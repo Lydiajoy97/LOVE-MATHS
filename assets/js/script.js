@@ -1,9 +1,9 @@
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByTagName("button");
 
     for (let button of buttons) {
         button.addEventListener("click", function() {
-        if (this.getAttribute("data-type")==="submit") {
+        if (this.getAttribute("data-type") === "submit") {
             checkAnswer();
         } else {
             let gameType = this.getAttribute("data-type");
@@ -22,9 +22,8 @@ function runGame(gameType){
 
     if (gameType === "addition") {
         displayAdditionQuestion(num1, num2);
-    } else {
-        alert('unknown game type: ${gameType}');
-        throw 'Unknown game type: ${gameType}. Aborting!';
+    } else if (gameType === "multiply") {
+        displayMultiplyQuestion(num1, num2);
     }
     
 }
@@ -54,6 +53,8 @@ function calculateCorrectAnswer () {
 
     if (operator === "+") {
         return [operand1, operand2, "addition"];
+    } else if (operator === "x") {
+        return [operand1 * operand2, "mulitply"];
     } else {
         alert('Unimplemented operator ${operator}');
         throw 'Unimplemented operator ${operator}. Aborting!';
@@ -85,5 +86,9 @@ function displaySubtractQuestion () {
 }
 
 function displayMultiplyQuestion () {
+
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "x";
 
 }
